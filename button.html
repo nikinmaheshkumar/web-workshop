@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Paragraph Color</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <p id="text">Click the button to change my color!</p>
+    <button id="colorButton">Change Color</button>
+
+    <script>
+        const button = document.getElementById('colorButton');
+        const paragraph = document.getElementById('text');
+
+        button.addEventListener('click', () => {
+            const colors = ['red', 'blue', 'green', 'orange', 'purple'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            paragraph.style.color = randomColor;
+        });
+    </script>
+</body>
+</html>

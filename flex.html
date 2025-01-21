@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Flexbox Playground</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .controls label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            display: flex;
+            border: 2px dashed #333;
+            padding: 1rem;
+            min-height: 200px;
+            gap: 1rem;
+        }
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            flex: 0 1 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Flexbox Playground</h1>
+    <div class="controls">
+
+        <label>
+            Flex Direction:
+            <select id="flex-direction">
+                <option value="row">row</option>
+                <option value="column">column</option>
+                <option value="row-reverse">row-reverse</option>
+                <option value="column-reverse">column-reverse</option>
+            </select>
+        </label>
+        <label>
+            Justify Content:
+            <select id="justify-content">
+                <option value="flex-start">flex-start</option>
+                <option value="center">center</option>
+                <option value="flex-end">flex-end</option>
+                <option value="space-around">space-around</option>
+                <option value="space-between">space-between</option>
+                <option value="space-evenly">space-evenly</option>
+            </select>
+        </label>
+        <label>
+            Align Items:
+            <select id="align-items">
+                <option value="stretch">stretch</option>
+                <option value="flex-start">flex-start</option>
+                <option value="center">center</option>
+                <option value="flex-end">flex-end</option>
+                <option value="baseline">baseline</option>
+            </select>
+        </label>
+
+        <label>
+            Select Item:
+            <select id="item-select">
+                <option value="item-1">Item 1</option>
+                <option value="item-2">Item 2</option>
+                <option value="item-3">Item 3</option>
+            </select>
+        </label>
+        <label>
+            Item Order:
+            <input type="number" id="item-order" value="0">
+        </label>
+        <label>
+            Flex Grow:
+            <input type="number" id="flex-grow" value="1" step="0.1">
+        </label>
+        <label>
+            Flex Shrink:
+            <input type="number" id="flex-shrink" value="1" step="0.1">
+        </label>
+        <label>
+            Flex Basis (px):
+            <input type="number" id="flex-basis" value="auto">
+        </label>
+        <button id="apply-item-properties">Apply to Selected Item</button>
+    </div>
+
+    <div class="container" id="flex-container">
+        <div class="item" id="item-1">Item 1</div>
+        <div class="item" id="item-2">Item 2</div>
+        <div class="item" id="item-3">Item 3</div>
+    </div>
+
+    <script>
+        const container = document.getElementById('flex-container');
+
+        document.getElementById('flex-direction').addEventListener('change', (e) => {
+            container.style.flexDirection = e.target.value;
+        });
+
+        document.getElementById('justify-content').addEventListener('change', (e) => {
+            container.style.justifyContent = e.target.value;
+        });
+
+        document.getElementById('align-items').addEventListener('change', (e) => {
+            container.style.alignItems = e.target.value;
+        });
+        document.getElementById('apply-item-properties').addEventListener('click', () => {
+            const selectedItemId = document.getElementById('item-select').value;
+            const selectedItem = document.getElementById(selectedItemId);
+
+            const order = document.getElementById('item-order').value;
+            const flexGrow = document.getElementById('flex-grow').value;
+            const flexShrink = document.getElementById('flex-shrink').value;
+            const flexBasis = document.getElementById('flex-basis').value;
+
+            selectedItem.style.order = order;
+            selectedItem.style.flexGrow = flexGrow;
+            selectedItem.style.flexShrink = flexShrink;
+            selectedItem.style.flexBasis = flexBasis === 'auto' ? 'auto' : `${flexBasis}px`;
+        });
+    </script>
+</body>
+</html>

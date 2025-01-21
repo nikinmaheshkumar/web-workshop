@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Box Model Playground</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .controls label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.9rem;
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            border: 2px dashed #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .box {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .box span {
+            display: block;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Box Model Playground</h1>
+    <div class="controls">
+        <label>
+            Margin (px):
+            <input type="number" id="margin" value="20" step="1">
+        </label>
+        <label>
+            Border Width (px):
+            <input type="number" id="border-width" value="5" step="1">
+        </label>
+        <label>
+            Padding (px):
+            <input type="number" id="padding" value="10" step="1">
+        </label>
+        <label>
+            Content Width (px):
+            <input type="number" id="width" value="150" step="1">
+        </label>
+        <label>
+            Content Height (px):
+            <input type="number" id="height" value="100" step="1">
+        </label>
+        <button id="apply-box-model">Apply Changes</button>
+    </div>
+
+    <div class="box-container">
+        <div class="box" id="box">
+            <span>Content</span>
+            <span>(Width x Height)</span>
+        </div>
+    </div>
+
+    <script>
+        const box = document.getElementById('box');
+        const marginInput = document.getElementById('margin');
+        const borderWidthInput = document.getElementById('border-width');
+        const paddingInput = document.getElementById('padding');
+        const widthInput = document.getElementById('width');
+        const heightInput = document.getElementById('height');
+        const applyButton = document.getElementById('apply-box-model');
+        function applyBoxModel() {
+            const margin = marginInput.value + 'px';
+            const borderWidth = borderWidthInput.value + 'px';
+            const padding = paddingInput.value + 'px';
+            const width = widthInput.value + 'px';
+            const height = heightInput.value + 'px';
+
+            box.style.margin = margin;
+            box.style.borderWidth = borderWidth;
+            box.style.borderStyle = 'solid';
+            box.style.borderColor = '#000';
+            box.style.padding = padding;
+            box.style.width = width;
+            box.style.height = height;
+            box.querySelector('span:nth-child(2)').textContent = `(${widthInput.value} x ${heightInput.value})`;
+        }
+        applyButton.addEventListener('click', applyBoxModel);
+        applyBoxModel();
+    </script>
+</body>
+</html>
